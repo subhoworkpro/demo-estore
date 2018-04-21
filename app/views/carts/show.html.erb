@@ -1,0 +1,79 @@
+<section class="cart-show">
+
+  <header class="page-header">
+    <h1>My Cart</h1>
+  </header>
+
+
+  <% if cart.blank? %>
+
+  <div class="alert alert-warning" role="alert">
+   Your cart is empty, dawg. Be a good capitalist and buy something!
+  </div>
+
+   <% else %>
+  <div class="panel panel-default items">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th colspan="2">Product</th>
+          <th>Unit Price</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @cart_total = 0 %>
+        <% cart.each do |product_id, details| %>
+          <%= render 'item', product_id: product_id, details: details %>
+          <% end %>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th colspan="4">
+            TOTAL:
+          </th>
+          <th>
+            &#8377;<%= @cart_total %>
+          </th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12  col-md-4">
+      <%= button_to "Continue Shopping", root_path , class: "btn btn-block btn-light" , method: :get%>
+    </div>
+    <% if(cart.count !=0 ) %>
+      <div class="col-sm-12  col-md-4">
+        <%= button_to "Empty cart", remove_all_cart_path, method: :delete, data: {confirm: "Are you sure?"} , class: "btn btn-lg btn-block btn-warning text-uppercase"%>
+      </div>
+      <div class="col-sm-12 col-md-4 text-right">
+        <%= button_to "Checkout", checkout_path , method: :get,class: "btn btn-lg btn-block btn-success text-uppercase"%>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <%= form_tag orders_path do %>
+        <script
+          src="https://checkout.razorpay.com/v1/checkout.js" class="stripe-button"
+          data-key="<%= ENV['MERCHANT_KEY_ID'] %>"
+          data-amount="<%= @cart_total * 100 %>"
+          data-name="Intellirio Demo Ecom"
+          data-description="<%= current_user.firstname %> <%= current_user.lastname %>'s Order"
+          data-prefill.name="<%= "#{current_user.firstname}" %>"
+          data-prefill.email="<%= "#{current_user.email}" %>"
+          data-theme.color="#F37254">
+        </script>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+
+  <br>
+  <br>
+
+</section>

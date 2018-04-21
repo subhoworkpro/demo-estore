@@ -1,0 +1,11 @@
+<tr>
+  <td>
+    <h4><%= current_user.firstname%>, <%= current_user.lastname%></h4>
+    <p><%= address.locality %>, <%= address.street %></p>
+    <p><%= address.city %>, <%= address.state %></p>
+    <p><%= address.country %>. Pin- <%= address.postal_code %></p>
+  </td>
+  <td>
+    <%= check_box_tag 'activated[]', current_user.id -%>
+  </td>
+</tr>

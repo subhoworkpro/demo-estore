@@ -1,0 +1,65 @@
+ <header class="page-header">
+    <h1>Checkout</h1>
+  </header>
+
+<% if cart.blank? %>
+
+  <div class="alert alert-warning" role="alert">
+   Your cart is empty, dawg. Be a good capitalist and buy something!
+  </div>
+
+<% else %>
+<div class="row">
+	 <div class="col-xs-12">
+	  <%= link_to '+ Add Address', [:new, :address], class: 'btn btn-info' %>
+	 </div>
+</div>
+<div class="row">
+	 <div class="col-xs-12 col-md-6">
+	  	<div class="panel panel-default products">
+		    <table class="table table-bordered">
+		    	<thead></thead>
+		      <tbody>
+		        <%= render @addresses %>
+		      </tbody>
+		    </table>
+		  </div>
+	  </div>
+	  <div class="col-xs-12 col-md-6">
+	  	<div><h1>Order Details</h1></div>
+		  	<table class="table ">
+		  		<tr>
+				  <td><h4>Price (<%= cart.size %> items)</h4></td>
+				  <td><h4>&#8377;<%= @cart_total %></h4></td>
+				</tr>
+				<tr>
+				  <td><h5>Delivery Changes</h5></td>
+				  <td><h5>Free</h5></td>
+				</tr>
+				<tr>
+				  <td><h3>Amount Payable</h3></td>
+				  <td><h3>&#8377;<%= @cart_total  %></h3></td>
+				</tr>
+			</table>
+			<%= form_tag orders_path do %>
+		        <script
+		          src="https://checkout.razorpay.com/v1/checkout.js" class="stripe-button"
+		          data-key="<%= ENV['MERCHANT_KEY_ID'] %>"
+		          data-amount="<%= @cart_total * 100 %>"
+		          data-name="Intellirio Demo Ecom"
+		          data-description="<%= current_user.firstname %> <%= current_user.lastname %>'s Order"
+		          data-prefill.name="<%= "#{current_user.firstname}" %>"
+		          data-prefill.email="<%= "#{current_user.email}" %>"
+		          data-theme.color="#F37254">
+		        </script>
+        		<input type="hidden" value="<%= "#{current_user.id}" %>" name="user_id">
+        		<input type="hidden" value="<%= "#{current_user.addresses.first.id}" %>" name="address_id">
+		      <% end %>
+	  </div>
+</div>
+  <div class="row">
+    <div class="col-xs-12">
+      
+    </div>
+  </div>
+<% end %>

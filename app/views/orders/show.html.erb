@@ -1,0 +1,54 @@
+<section class="orders-show">
+
+  <header class="page-header">
+    <h1>Order Details</h1>
+  </header>
+  <div class="order-summary jumbotron col-md-6">
+    <h4>Thank you for your order!</h4>
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        Order ID: OD<%= @order.id %>
+        <br/>
+        Order Date: <%= @order.created_at %>
+        <br/>
+        Total Amount: &#8377;<%= @order.total_cents/100 %>
+      </div>
+    </div>
+  </div>
+
+  <div class="order-summary jumbotron col-md-6">
+    <h4>Address!</h4>
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <%= current_user.firstname%>, <%= current_user.lastname%><br/>
+        <%= @order.address.locality %>, <%= @order.address.street %><br/>
+        <%= @order.address.city %>, <%= @order.address.state %><br/>
+        <%= @order.address.country %>. Pin- <%= @order.address.postal_code %><br/>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default items">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th colspan="2">Product</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render 'item' %>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th colspan="3">
+            GRAND TOTAL:
+          </th>
+          <th>
+            &#8377;<%= @order.total %>
+          </th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</section>

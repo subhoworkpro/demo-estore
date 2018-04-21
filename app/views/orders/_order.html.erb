@@ -1,0 +1,12 @@
+<tr>
+  <td>
+    <%= link_to order do %>
+      <h4>OD<%= order.id %></h4>
+    <% end %>
+  </td>
+  <% @order = order %>
+  <td><%= render 'item' %></td>
+  <td>
+    &#8377;<%= order.total_cents / 100 %>
+  </td>
+</tr>

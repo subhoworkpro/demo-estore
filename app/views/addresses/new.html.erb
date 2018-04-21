@@ -1,0 +1,57 @@
+ <header class="page-header">
+    <h1>Add a new address</h1>
+  </header>
+
+  <%= current_user.email %>
+
+ <div class="row">
+    <div class="col-sm-6 col-sm-offset-1">
+      <%= form_for [@address] do |form| %>
+
+        <% if form.object.errors.any? %>
+          <div class="alert alert-danger">
+            <strong>The following errors prevented saving:</strong>
+            <ul>
+              <% form.object.errors.full_messages.each do |error| %>
+                <li><%= error %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="form-group">
+          <%= form.label :locality %>
+          <%= form.text_field :locality, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :street %>
+          <%= form.text_field :street, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :city %>
+          <%= form.select :city, options_for_select([["Kolkata","Kolkata"],["Delhi","Delhi"]]), class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :state %>
+          <%= form.select :state, options_for_select([["West Bengal","West Bengal"],["Karnataka","Karnataka"]]), class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :postal_code %>
+          <%= form.text_field :postal_code, class: 'form-control' %>
+        </div>
+
+
+
+        <div class="form-group">
+          <%= form.label :country %>
+          <%= form.text_field :country, class: 'form-control' %>
+        </div>
+
+        <%= form.submit 'Save Address', class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
