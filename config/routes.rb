@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  root to: 'products#index'
+  root to: 'home#index'
+
+  get '/' => 'home#index', :as => :home
 
   resources :products, only: [:index, :show] do
     resources :reviews, only: [:create, :destroy]

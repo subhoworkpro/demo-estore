@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Demo Store</title>
+  <title>Shobha Collections</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-  <%= render 'layouts/top_nav' %>
+  <%= render 'layouts/header' %>
 
-  <main class="container">
+  <%= render 'layouts/top_banner' %>
+
+  <main class="">
     <%= render 'layouts/flash' %>
     <%= yield %>
   </main>
 
   <%= yield :end_of_body %>
+  <%= render 'layouts/footer' %>
 </body>
 </html>

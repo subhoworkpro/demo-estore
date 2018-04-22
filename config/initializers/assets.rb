@@ -9,3 +9,8 @@ Rails.application.config.assets.version = '1.0'
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 Rails.application.config.assets.precompile << /\.(?:png|jpg|jpeg|gif)\z/
+
+Rails.application.config.assets.precompile += %w( jquery-ui.css )
+Rails.application.config.assets.precompile += %w( jquery-ui.js )
+Rails.application.config.assets.precompile += %w( easy-responsive-tabs.css )
+Rails.application.config.assets.precompile += %w( custom-tabs.js )

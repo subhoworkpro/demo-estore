@@ -1,4 +1,4 @@
-<article class="product">
+<!-- <article class="product">
   <header>
     <%= link_to product do %>
     <%= image_tag product.image.thumb, alt: product.name %>
@@ -25,4 +25,45 @@
   <% if product.quantity == 0 %>
   <%= out_of_stock %>
   <% end %>
-</article>
+</article> -->
+
+
+<div class="col-md-3 product-men">
+    <div class="men-pro-item simpleCart_shelfItem">
+        <div class="men-thumb-item">
+            <!-- <img src="images/m1.jpg" alt="" class="pro-image-front"> -->
+            <!-- <img src="images/m1.jpg" alt="" class="pro-image-back"> -->
+            <%= image_tag product.image.thumb, alt: product.name, class: "pro-image-front" %>
+            <%= image_tag product.image.thumb, alt: product.name, class: "pro-image-back" %>
+            <div class="men-cart-pro">
+                <div class="inner-men-cart-pro">
+                    <%= link_to product, :class=>"link-product-add-cart" do %>
+                      Quick View
+                    <% end %>
+                </div>
+            </div>
+            <span class="product-new-top">New</span>
+
+        </div>
+        <div class="item-info-product ">
+            <h4>
+              <%= link_to product do %>
+                <%= product.name %>
+              <% end %>
+            </h4>
+            <div class="info-product-price">
+                <span class="item_price">&#8377;<%= product.price %></span>
+                <del>&#8377;<%= product.price %></del>
+            </div>
+            <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
+                <% if product.quantity > 0 %>
+                    <%= link_to add_item_cart_path(product_id: product.id), class: 'button', method: :put do %>
+                      ADD TO CART
+                    <% end %>
+                <% else %>
+                  <a href="#" class="button">Out of Stock</a>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

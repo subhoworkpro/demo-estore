@@ -12,6 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require easy-responsive-tabs
+//= require responsiveslides.min
+//= require jquery.flexslider
+//= require custom-tabs
 //= require_tree .
